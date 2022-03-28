@@ -1,0 +1,220 @@
+.App {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+body {
+  background: rgb(255, 255, 255);
+}
+
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+  transition: all 0.3s;
+}
+#login-page {
+  background-image: url("https://www.freecodecamp.org/news/content/images/size/w2000/2020/04/w-qjCHPZbeXCQ-unsplash.jpg");
+  min-height: 100vh;
+}
+input:focus {
+  outline: none;
+}
+.login-input {
+  border: 3px solid white;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: hsla(0,0%,100%,.15);
+}
+input .login-input {
+  outline:none;
+}
+.form-group .icons {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+    margin-top: 8px;
+    display: inline-block;
+}
+.btn-login:hover {
+  background-color: rgb(241, 170, 170);
+}
+.btn-login {
+  padding-top: 10px;
+  padding-bottom: 30px;
+  border-radius: 20px;
+  border: 3px solid white;
+  background-color: hsla(0,0%,100%,.15);
+  /* background-color: #eb364e; */
+}
+.login-icon {
+  position: absolute;
+  margin-left: 5px;
+  height: 25px;
+  display: flex;
+
+  align-items: center;
+}
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+.sidebar {
+  min-width: 250px;
+  max-width: 250px;
+  /* background: #cac7c8; */
+  color: #0e0101;
+  margin-left: -250px;
+  transition: all 0.5s;
+  /* box-shadow: 5px 4px 8px #888888; */
+}
+a.nav-link {
+  color: #979090;
+}
+a.nav-link:hover {
+  color: red;
+}
+.sidebar.is-open {
+  margin-left: 0;
+  transition: 0.5s;
+}
+
+.sidebar-header {
+  /* background: #cac7c8; */
+  color: #979090;
+}
+
+.nav-item:hover {
+  color: #eb364e;
+}
+
+.side-menu {
+  height: calc(100vh);
+  /* overflow-y: scroll; */
+} 
+
+.side-menu::-webkit-scrollbar {
+  width: 10px;
+}
+
+.side-menu::-webkit-scrollbar-thumb {
+  background: #ece9e9;
+  border-radius: 3px;
+}
+
+.side-menu::-webkit-scrollbar-thumb:hover {
+  background: #ece9e9;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+/* .content {
+  padding: 20px;
+  margin-left: 0;
+  height: 100vh;
+} */
+
+@media only screen and (max-width: 100%) {
+  body {
+    overflow: hidden;
+  }
+
+  .content.is-open {
+    margin-left: 100%;
+  }
+
+  .sidebar.is-open {
+    min-width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    transition: all 0.5s, height 0s;
+  }
+
+  .sidebar.is-open > .sidebar-header span {
+    display: unset;
+  }
+
+  li a.dropdown-toggle::after {
+    display: inline-block;
+    position: relative;
+    left: 68%;
+  }
+}
+.form_group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 100%;
+}
+.form_field {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid gray;
+  outline: 0;
+  color: black;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+  margin-top: 10px;
+}
+
+.form_field::placeholder {
+  color: #C4C4C5;
+}
+.form_field::-ms-input-placeholder {
+color: #C4C4C5;
+}
+.form_label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+.form_group input:focus::placeholder {
+  color: transparent;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .container{
+    width: 100%;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .container{
+    width: 100%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .container{
+    width: 100%;
+  }
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .container{
+    width: 100%;
+  }
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .container{
+    width: 100%;
+  }
+}
+}
