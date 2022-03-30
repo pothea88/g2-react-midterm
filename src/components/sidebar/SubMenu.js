@@ -11,6 +11,7 @@ import {
   faImage,
   faCopy,
   faKey,
+  faBook,
   faPeopleArrows
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -26,7 +27,7 @@ const SubMenu = (props) => {
     <div>
       <NavItem onClick={toggle} className={classNames({ "menu-open": !collapsed })}>
         <NavLink className="dropdown-toggle">
-          <FontAwesomeIcon icon={faKey} className="mr-2" />
+          <FontAwesomeIcon icon={faLayerGroup} className="mr-2" />
           Book List
         </NavLink>
       </NavItem>
@@ -36,15 +37,21 @@ const SubMenu = (props) => {
         className={classNames("items-menu", { "mb-1": !collapsed })}
       >
         <NavItem className="pl-4">
-          <NavLink tag={Link} to={"#"} >
-            <FontAwesomeIcon icon={faUser} className="mr-2" />
+          <NavLink tag={Link} to={"/khmerBook"} >
+            <FontAwesomeIcon icon={faKey} className="mr-2" />
             Khmer
           </NavLink>
         </NavItem>
         <NavItem className="pl-4">
-          <NavLink tag={Link} to={"#"} >
-            <FontAwesomeIcon icon={faUser} className="mr-2" />
+          <NavLink tag={Link} to={"/engBook"} >
+            <FontAwesomeIcon icon={faKey} className="mr-2" />
             English
+          </NavLink>
+        </NavItem>
+        <NavItem className="pl-4"> 
+          <NavLink tag={Link} to={"/bookList"}>
+            <FontAwesomeIcon icon={faBook} className="mr-2" />
+            Technology book
           </NavLink>
         </NavItem>
         {/* <NavItem  onClick={toggleSubMenu}
