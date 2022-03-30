@@ -12,7 +12,6 @@ const Content = () => {
         <Container fluid>
             <Switch>
               {routes.map((route, idx) => {
-                console.log(route.component);
                 return route.component && (
                   <Route
                     key={idx}

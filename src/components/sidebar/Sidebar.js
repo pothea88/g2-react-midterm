@@ -1,8 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faBook,
+  faHome,
   faLayerGroup,
   faPager,
+  faPhone,
   faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { NavItem, NavLink, Nav, Row, Col } from "reactstrap";
@@ -31,15 +34,16 @@ function SideBar({ isOpen, toggle }){
             <Nav vertical className="list-unstyled pb-3">
               <NavItem>
                 <NavLink tag={Link} to={"/home"}>
-                  <FontAwesomeIcon icon={faLayerGroup} className="mr-2" />
+                  <FontAwesomeIcon icon={faHome} className="mr-2" />
                   Home
                 </NavLink>
               </NavItem>
               <SubMenu />
+              
               <NavItem>
-                <NavLink tag={Link} to={"/bookList"}>
-                  <FontAwesomeIcon icon={faPager} className="mr-2" />
-                  Book
+                <NavLink tag={Link} to={"/contactUs"}>
+                  <FontAwesomeIcon icon={faPhone} className="mr-2" />
+                  Contact Us
                 </NavLink>
               </NavItem>
             </Nav>
