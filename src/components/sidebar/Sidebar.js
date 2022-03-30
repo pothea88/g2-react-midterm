@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faLayerGroup,
   faPager,
-  faSignOutAlt
+  faPhone,
+  faSignOutAlt,
+  faUser
 } from "@fortawesome/free-solid-svg-icons";
 import { NavItem, NavLink, Nav, Row, Col } from "reactstrap";
 import classNames from "classnames";
@@ -40,6 +42,12 @@ function SideBar({ isOpen, toggle }){
                 <NavLink tag={Link} to={"/bookList"}>
                   <FontAwesomeIcon icon={faPager} className="mr-2" />
                   Book
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink tag={Link} to={"/contactUs"}>
+                  <FontAwesomeIcon icon={faPhone} className="mr-2" />
+                  Contact Us
                 </NavLink>
               </NavItem>
             </Nav>

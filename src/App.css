@@ -6,19 +6,11 @@
 
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
-body {
-  background: rgb(255, 255, 255);
-}
-
 a,
 a:hover,
 a:focus {
   text-decoration: none;
   transition: all 0.3s;
-}
-#login-page {
-  background-image: url("https://www.freecodecamp.org/news/content/images/size/w2000/2020/04/w-qjCHPZbeXCQ-unsplash.jpg");
-  min-height: 100vh;
 }
 input:focus {
   outline: none;
@@ -45,25 +37,6 @@ input .login-input {
     margin-top: 8px;
     display: inline-block;
 }
-.btn-login:hover {
-  background-color: rgb(241, 170, 170);
-}
-.btn-login {
-  padding-top: 10px;
-  padding-bottom: 30px;
-  border-radius: 20px;
-  border: 3px solid white;
-  background-color: hsla(0,0%,100%,.15);
-  /* background-color: #eb364e; */
-}
-.login-icon {
-  position: absolute;
-  margin-left: 5px;
-  height: 25px;
-  display: flex;
-
-  align-items: center;
-}
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -85,11 +58,13 @@ a.nav-link:hover {
 .sidebar.is-open {
   margin-left: 0;
   transition: 0.5s;
+  background-color: rgb(229, 234, 236);
 }
 
 .sidebar-header {
   /* background: #cac7c8; */
   color: #979090;
+  /* background-color: rgb(204, 242, 255); */
 }
 
 .nav-item:hover {
@@ -98,6 +73,7 @@ a.nav-link:hover {
 
 .side-menu {
   height: calc(100vh);
+  /* background-color: rgb(204, 242, 255); */
   /* overflow-y: scroll; */
 } 
 
