@@ -20,7 +20,7 @@ const Content = () => {
                     name={route.name}
                     render={props => {
                       if(route.path==="/")
-                        return <Redirect to="/home" />
+                        return <Redirect from='/' to="/home" />
                       return (
                         <Fade>
                           <route.component {...props} />
