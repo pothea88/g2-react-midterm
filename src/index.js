@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/Header';
 
 ReactDOM.render(
   <React.Fragment>
+    <Header />
     <App />
   </React.Fragment>,
   document.getElementById('root')

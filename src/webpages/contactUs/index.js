@@ -5,7 +5,7 @@ class ContactUs extends React.Component {
         return(
             <React.Fragment>
                 {/* <!--Section: Contact v.2--> */}
-<section className="mb-4">
+<section className="mb-4 container">
 
     {/* <!--Section heading--> */}
     <h2 className="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
@@ -56,8 +56,16 @@ class ContactUs extends React.Component {
                 </div>
 
                 <div className="row">
+                    <div className="col-md-12">
+                        <div className="md-form mb-0">
+                            <label for="subject" className="">Phone Number</label>
+                            <input type="text" id="subject" name="subject" className="form-control" />
+                            
+                        </div>
+                    </div>
+                </div>
 
-
+                <div className="row">
                     <div className="col-md-12">
 
                         <div className="md-form">
@@ -81,15 +89,15 @@ class ContactUs extends React.Component {
         <div className="col-md-6 col-sm-12 text-center">
             <ul className="list-unstyled mb-0">
                 <li><i className="fas fa-map-marker-alt fa-2x"></i>
-                    <p>San Francisco, CA 94126, USA</p>
+                    <p>Phnom Penh, CA 94126, Cambodia</p>
                 </li>
 
                 <li><i className="fas fa-phone mt-4 fa-2x"></i>
-                    <p>+ 01 234 567 89</p>
+                    <p>023 23 4323</p>
                 </li>
 
                 <li><i className="fas fa-envelope mt-4 fa-2x"></i>
-                    <p>contact@mdbootstrap.com</p>
+                    <p>group2ReactDevelopment@gmail.com</p>
                 </li>
             </ul>
         </div>

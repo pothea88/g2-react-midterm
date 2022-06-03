@@ -1,91 +1,85 @@
-import React from 'react';
-import book01 from '../../assests/01.jpg';
-import book02 from '../../assests/02.jpg';
-import book03 from '../../assests/03.jpg';
-import book04 from '../../assests/07.jpg';
-import book05 from '../../assests/05.jpg';
-import book06 from '../../assests/06.jpg';
-import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
-const KhmerBook = () => {
+import React, {useEffect, useState} from 'react';
+import { getBooks } from '../../webservice';
+
+function KhmerBook() {
+
+    const[books,setBooks] =  useState([]); 
+    const[loading, setLoading] = useState(false);
+    const[showModal, setShowModal] = useState({});
+
+    useEffect(() => {
+        setLoading(true);
+        let api = '/KH';
+        getBooks(api) 
+        .then(res => {
+            if(res.status === 200) {
+                setBooks(res.data.data);    
+            }
+        })
+        .catch(function(error) {
+            console.log(error);
+        })
+        .finally(() => {
+            setLoading(false);
+        });
+    },[]);
+
+    const getModal = (value) => {
+        const api = `/book/${value}`;
+        getBooks(api)
+        .then(res => {
+            setShowModal(res.data.data);
+        })
+    }
+    console.log(showModal);
     return (
-        <container>
-            <div className="row">
-                <div className="col-4">
-                    <Link to={'/book01'}>
-                        <div className="card">
-                            <div className="title"><h3 className="text-center">សុិទ្ធ កុមារភាពដែលត្រូវគេដកហូត</h3></div>
-                                <div className="card-body">
-                                    <img src={book01} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
+        <React.Fragment>
+            <div className='container-fluid'>
+                <div className='row'>
+                    {books.map((item) => (
+                        <div className='col-lg-3 col-md-4 col-sm-6'>
+                            <div className='card m-4' style={{boxShadow:'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)', border:'none'}}>
+                                <div className='card-body' key={item.id}>
+                                    <h2 className='text-center'>{item.title}</h2>
+                                    <hr></hr>
+                                    <img src={item.image} alt="book" style={{display:'block', marginLeft:'auto', marginRight:'auto',width:'100%'}} />
                                 </div>
-                        </div>
-                    </Link>
-                </div>
-                <div className="col-4">
-                    <Link to={'/book02'}>
-                        <div className="card">
-                            <div className="title"><h3 className="text-center">មឃ មាណព</h3></div>
-                            <a href=''>
-                                <div className="card-body">
-                                    <img src={book02} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
+                                <div className='container m-2'>  
+                                    <button className='btn btn-primary' data-toggle="modal" data-target="#exampleModal" onClick={() => getModal(item.id)}>Detail</button>
                                 </div>
-                            </a>
-                        </div>
-                    </Link>
-                </div>
-                <div className="col-4">
-                    <Link to={'/book03'}>
-                        <div className="card">
-                            <div className="title"><h3 className="text-center">ព្រះវេសន្តរ</h3></div>
-                            <a href=''>
-                                <div className="card-body">
-                                    <img src={book03} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
-                                </div>
-                            </a>
-                        </div>
-                    </Link>
+                            </div> 
+                        </div> 
+                    ))}
                 </div>
             </div>
-            <br></br>
-            <div className="row">
-                <div className="col-4">
-                    <Link to={'/book04'}>
-                        <div className="card">
-                            <div className="title"><h3 className="text-center">អាគ្រក់ ឬ ក្រមិល</h3></div>
-                            <a href=''>
-                                <div className="card-body">
-                                    <img src={book04} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
-                                </div>
-                            </a>
-                        </div>
-                    </Link>
-                </div>
-                <div className="col-4">
-                    <Link to={'/book05'}>
-                        <div className="card">
-                            <div className="title"><h3 className="text-center">ត្រពាំងបិសាច</h3></div>
-                            <a href=''>
-                                <div className="card-body">
-                                    <img src={book05} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
-                                </div>
-                            </a>
-                        </div>
-                    </Link>
-                </div>
-                <div className="col-4">
-                    <Link to={'/book06'}>
-                        <div className="card">
-                            <div className="title"><h3 className="text-center">ស្បៃអតីតកាល</h3></div>
-                            <a href=''>
-                                <div className="card-body">
-                                    <img src={book06} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
-                                </div>
-                            </a>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    </Link>
+                    <div class="modal-body">
+                        <div className='container'>
+                            <div>
+                                <img src={showModal.image} style={{display:'block', marginLeft:'auto', marginRight:'auto',width:'100%'}} />
+                            </div>
+                            <hr></hr>
+                            <strong>Title: </strong>{showModal.title}
+                            <hr></hr>
+                            <strong>Author: </strong> {showModal.author}
+                            <hr></hr>
+                            <strong>Price: </strong> {showModal.price} $
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
                 </div>
             </div>
-        </container>
+        </React.Fragment>   
     );
 };
 export default KhmerBook;

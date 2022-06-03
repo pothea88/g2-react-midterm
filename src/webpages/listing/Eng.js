@@ -1,77 +1,85 @@
-import React from 'react';
-import book01 from '../../assests/competition.jpg';
-import book02 from '../../assests/conversation.jpg';
-import book03 from '../../assests/english.jpg';
-import book04 from '../../assests/grammar.jpg';
-import book05 from '../../assests/hightSchool.jpg';
-import book06 from '../../assests/talk.jpg';
-const EngBook = () => {
+import React, {useEffect, useState} from 'react';
+import { Link } from 'react-router-dom';
+import book01 from '../../assests/01.jpg';
+import { getBooks } from '../../webservice';
+
+function EngBook() {
+
+    const[books,setBooks] =  useState([]); 
+    const[loading, setLoading] = useState(false);
+    const[showModal, setShowModal] = useState({});
+
+    useEffect(() => {
+        setLoading(true);
+        let api = '/EN';
+        getBooks(api) 
+        .then(res => {
+            if(res.status === 200) {
+                setBooks(res.data.data);    
+            }
+        })
+        .catch(function(error) {
+            console.log(error);
+        })
+        .finally(() => {
+            setLoading(false);
+        })
+    },[]);
+    const getModal = (value) => {
+        const api = `/book/${value}`;
+        getBooks(api)
+        .then(res => {
+            setShowModal(res.data.data);
+        })
+    }
     return (
-        <container>
-            <div class="row">
-                <div class="col-4">
-                    <div class="card">
-                        <div class="title"><h3 class="text-center">1. Competition</h3></div>
-                            <div class="card-body">
-                                <img src={book01} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
+        <React.Fragment>
+            <div className='container-fluid'>
+                <div className='row'>
+                    {books.map((item) => (
+                        <div className='col-lg-3 col-md-4 col-sm-6'>
+                            <div className='card m-4' style={{boxShadow:'0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)', border:'none'}}>
+                                <div className='card-body' key={item.id}>
+                                    <h2 className='text-center'>{item.title}</h2>
+                                    <hr></hr>
+                                    <img src={item.image} alt="book" style={{display:'block', marginLeft:'auto', marginRight:'auto',width:'100%'}} />
+                                </div>
+                                <div className='container m-2'>  
+                                    <button className='btn btn-primary' data-toggle="modal" data-target="#exampleModal" onClick={() => getModal(item.id)}>Detail</button>
+                                </div>
                             </div>
-                    </div>
+                        </div>
+                    ))}
                 </div>
-                <div class="col-4">
-                    <div class="card">
-                        <div class="title"><h3 class="text-center">2. Conversation</h3></div>
-                        <a href=''>
-                            <div class="card-body">
-                                <img src={book02} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
-                            </div>
-                        </a>
+            </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <div class="title"><h3 class="text-center">3. English References</h3></div>
-                        <a href=''>
-                            <div class="card-body">
-                                <img src={book03} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
+                    <div class="modal-body">
+                        <div className='container'>
+                            <div>
+                                <img src={showModal.image} style={{display:'block', marginLeft:'auto', marginRight:'auto',width:'100%'}} />
                             </div>
-                        </a>
+                            <hr></hr>
+                            <strong>Title: </strong>{showModal.title}
+                            <hr></hr>
+                            <strong>Author: </strong> {showModal.author}
+                            <hr></hr>
+                            <strong>Price: </strong> {showModal.price} $
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                     </div>
                 </div>
             </div>
-            <br></br>
-            <div class="row">
-                <div class="col-4">
-                    <div class="card">
-                        <div class="title"><h3 class="text-center">4. General English</h3></div>
-                        <a href=''>
-                            <div class="card-body">
-                                <img src={book04} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <div class="title"><h3 class="text-center">5. English for High School</h3></div>
-                        <a href=''>
-                            <div class="card-body">
-                                <img src={book05} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div class="card">
-                        <div class="title"><h3 class="text-center">6. Talking</h3></div>
-                        <a href=''>
-                            <div class="card-body">
-                                <img src={book06} style={{width:'280px',height:'300px', marginLeft:'0 auto'}}></img>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </container>
+        </React.Fragment>   
     );
 };
 export default EngBook;
